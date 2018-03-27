@@ -12,11 +12,11 @@ $.ajax({
     }).done(function(response){
         if(response.stream != null) {
             // console.log(response);
-            live += "<tr>" + "<td>" + elem + "</td>"+ "<td>" + response.stream.game + "</td>" + "<td>Live</td>" + "<td>" + response.stream._links.self+ "</td>"+ "</tr>";
+            live += "<tr class='online'>" + "<td>" + elem + "</td>"+ "<td>" + response.stream.game + "</td>" + "<td>Live</td>" + "<td>" + response.stream._links.self+ "</td>"+ "</tr>";
         } else {
             console.log(response._links);
             
-            offline += "<tr>" + "<td>" + elem + "</td>"+ "<td>" + response._links.self + "</td>" + "<td>Offline</td>" + "<td></td>" + "</tr>";
+            offline += "<tr class='offline'>" + "<td>" + elem + "</td>"+ "<td>" + response._links.self + "</td>" + "<td>Offline</td>" + "<td></td>" + "</tr>";
         }
 
         all = live + offline;
