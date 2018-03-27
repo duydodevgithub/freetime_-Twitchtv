@@ -10,25 +10,31 @@ $.ajax({
         dataType: "jsonp",
         method: "GET"
     }).done(function(response){
-        console.log(response);
         if(response.stream != null) {
-            live += "<p>" + elem +"</p>";
+            // console.log(response);
+            live += "<tr>" + "<td>" + elem + "</td>"+ "<td>" + response.stream.game + "</td>" + "<td>Live</td>" + "<td>" + response.stream._links.self+ "</td>"+ "</tr>";
         } else {
-            offline += "<p>" + elem + "</p>";
+            console.log(response._links);
+            
+            offline += "<tr>" + "<td>" + elem + "</td>"+ "<td>" + response._links.self + "</td>" + "<td>Offline</td>" + "<td></td>" + "</tr>";
         }
 
         all = live + offline;
+        $("#list").html("<tr><th>Channel</th><th>Content</th><th>Status</th><th>URL</th></tr>");    
+        $("#list").append(all);
     })
 })
 
 $("#live").on("click", function(){
-    $("#content").html(live);
+    $("#list").html("<tr><th>Channel</th><th>Content</th><th>Status</th><th>URL</th></tr>");    
+    $("#list").append(live);
 });
 
 $("#offline").on("click", function(){
-    $("#content").html(offline);
+    $("#list").html("<tr><th>Channel</th><th>Content</th><th>Status</th><th>URL</th></tr>");
+    $("#list").append(offline);
 });
-
 $("#all").on("click", function(){
-    $("#content").html(all);
+    $("#list").html("<tr><th>Channel</th><th>Content</th><th>Status</th><th>URL</th></tr>");    
+    $("#list").append(all);
 })
